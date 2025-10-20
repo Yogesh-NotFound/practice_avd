@@ -1,0 +1,1 @@
+print("loading  data to waaehouse like snowflake")
