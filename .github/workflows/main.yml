@@ -9,21 +9,28 @@ jobs:
   extract-data:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: extracting data 
+      - name: Extracting Data
         run: python extract.py
+
   transform-data:
     runs-on: ubuntu-latest
     needs: extract-data
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: transforming data 
+      - name: Transforming Data
         run: python transform.py
 
   load-data:
     runs-on: ubuntu-latest
     needs: transform-data
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: loading data 
+      - name: Loading Data
         run: python load.py
