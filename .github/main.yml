@@ -1,7 +1,7 @@
 Name : ETL PIPELINE EXAMPLE
 On: 
-    push : 
-         branchess : 
+    push: 
+         branchess: 
          - main 
 
 Jobs: 
