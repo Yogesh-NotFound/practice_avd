@@ -1,36 +1,34 @@
-name: My First GitHub Action
-
+name: Creating Pipeline in etl 
 on:
   push:
-    branches:
-      - main
+      branches: 
+        -main
 
 jobs:
-  extract-data:
+  extract data:
+   runs-on: ubuntu-latest
+   steps: 
+      - name : checkout code
+        uses: actions/checkout@v2
+      - name : run python file to extract data
+        run : python extract.py             
+
+  transform data:
+   runs-on: ubuntu-latest
+   needs: extract data
+   steps:
+      - name: checkout code
+        uses: actions/checkout@v2 
+
+      - name: transform data by runnig python
+        run : python transform.py   
+
+  load data :
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    needs : transform data
+    steps : 
+       - name : checkout code
+         uses : actions/checkout@v2
 
-      - name: Extracting Data
-        run: python extract.py
-
-  transform-data:
-    runs-on: ubuntu-latest
-    needs: extract-data
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Transforming Data
-        run: python transform.py
-
-  load-data:
-    runs-on: ubuntu-latest
-    needs: transform-data
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Loading Data
-        run: python load.py
+       - name : laoding data to destination
+         run  : python load.py              
