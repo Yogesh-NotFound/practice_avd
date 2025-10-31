@@ -1,1 +1,0 @@
-print("transforming data from  data grtting from social media ")
